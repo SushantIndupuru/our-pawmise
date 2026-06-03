@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Education and Outreach - Our Pawmise" description="Pet owner education and outreach programs from OurPawmise.">
+  <main class="page">
+    <header class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Services Offered</p>
+        <h1>Pet Owner Education and Outreach</h1>
+        <p>
+          Grants solve immediate problems. Education reduces future crises. OurPawmise treats these as
+          equally important parts of our mission.
+        </p>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="grid">
+          <article class="card">
+            <h2>Preventive Care Education</h2>
+            <p>Easy-to-understand guidance on regular veterinary check-ups, vaccinations, dental health, proper nutrition, and early warning signs of common illnesses. By encouraging preventive measures early, we help owners address health issues before they escalate into costly emergencies.</p>
+          </article>
+          <article class="card">
+            <h2>Financial Planning for Pet Care</h2>
+            <p>Impartial information on how pet insurance works, savings strategies, emergency pet funds, responsible use of healthcare credit lines, and exploring payment plans. Many owners are unaware of pet insurance or assume it's unaffordable, and we want to change that.</p>
+          </article>
+          <article class="card">
+            <h2>Resource Referrals</h2>
+            <p>We maintain an up-to-date list of other assistance programs and low-cost services like spay/neuter clinics, vaccine clinics, regional pet aid funds, and local humane societies. If we can't directly solve the problem, we make sure no pet owner is left without guidance. No-wrong-door.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="wrap narrow">
+        <h2>Workshops and Community Outreach</h2>
+        <ul>
+          <li>Budgeting for pet health</li>
+          <li>Understanding pet insurance plans</li>
+          <li>Basic pet first aid and early intervention</li>
+          <li>Partner wellness fairs with local veterinary clinics and animal shelters</li>
+        </ul>
+        <p>
+          Workshops are hosted both in person locally and via webinar, and often feature volunteer
+          veterinarians or animal care professionals. The tone is always friendly, accessible, and
+          compassionate, empowering pet parents rather than judging them. We measure success through
+          feedback surveys and by tracking outcomes like increased insurance enrollment among applicants
+          who attended our events.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap narrow">
+        <h2>Online Education Center</h2>
+        <p>
+          Our website features a dedicated Education Center with articles, infographics, and FAQs available
+          for free. Topics range from detecting early signs of illness, to breaking down the typical costs of
+          treating common ailments, to creative ways to raise funds for pet care. Content is regularly updated
+          by our staff and volunteer experts.
+        </p>
+        <p>
+          We also maintain an active social media presence sharing pet health tips and success stories of pets
+          we've helped, spreading both awareness and hope. An informed pet owner is better prepared and more
+          likely to seek help early. We don't only put out fires; we teach families how to prevent them.
+        </p>
+        <a class="btn" href="/operations-plan">Back to Operations Overview</a>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .page { padding-top: 68px; }
+  .page-hero { padding: 3rem 0 2rem; }
+  @media (max-width: 480px) {
+    .page-hero { padding: 2rem 0 1.25rem; }
+    .section { padding: 1.5rem 0; }
+  }
+  .eyebrow { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.7rem; }
+  h1 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 0.8rem; letter-spacing: -0.03em; }
+  h2 { font-size: 1.35rem; margin-bottom: 0.6rem; }
+  p, li { color: var(--muted); }
+  .narrow { max-width: 760px; }
+  .section { padding: 2rem 0; }
+  .section-alt { background: var(--surface); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
+  .card { border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; background: var(--bg); }
+  ul { padding-left: 1rem; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.8rem; }
+  .btn { display: inline-block; margin-top: 1rem; padding: 0.7rem 1.25rem; border-radius: 6px; background: var(--accent); color: #fff; text-decoration: none; font-size: 0.95rem; }
+  .btn:hover { background: var(--accent-hover); }
+</style>

@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Financial Assistance - Our Pawmise" description="How OurPawmise grants work for East Bay families facing major veterinary costs.">
+  <main class="page">
+    <header class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Services Offered</p>
+        <h1>Financial Assistance Program</h1>
+        <p>
+          We offer one-time grants to East Bay pet owners for serious, treatable, non-routine conditions.
+          Funds are paid directly to veterinary providers.
+        </p>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="wrap">
+        <h2>Program Scope</h2>
+        <div class="grid">
+          <article class="card"><h3>Non-Emergency Focus</h3><p>Urgent cases that can wait for review are prioritized. Immediate life-or-death emergencies are referred to emergency-specific resources.</p></article>
+          <article class="card"><h3>Local Service Area</h3><p>We serve eligible pet owners across the East Bay and coordinate with licensed regional veterinary clinics and hospitals.</p></article>
+          <article class="card"><h3>Direct-to-Vet Payment</h3><p>Grant funds are never sent directly to applicants. This protects accountability and confirms medical-use intent.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="wrap narrow">
+        <h2>Commonly Supported Treatments</h2>
+        <ul>
+          <li>Tumor removals, biopsies, oncology treatment plans</li>
+          <li>Chemotherapy or radiation therapy</li>
+          <li>Cardiology interventions and long-term cardiac medications</li>
+          <li>Orthopedic surgery (cruciate ligament repair, hip dysplasia surgery, and similar)</li>
+          <li>Kidney disease management (dialysis, specialized diet support, and related care)</li>
+          <li>Vision-saving eye surgeries and other non-routine interventions critical to quality of life</li>
+        </ul>
+        <p class="note">
+          We do not fund routine or elective care such as vaccinations, routine dental cleanings,
+          spay/neuter, food, or general ownership expenses. Our aim is to concentrate on extraordinary
+          medical crises that would be financially devastating for the average pet owner.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <h2>Grant Limits and Client Partnership</h2>
+        <div class="grid">
+          <article class="card"><h3>Grant Cap</h3><p>Each grant covers a significant portion of the required treatment cost up to a maximum cap per case. Full coverage is not guaranteed; our grants serve as a hand-up to bridge the final gap in funding.</p></article>
+          <article class="card"><h3>Client Contribution</h3><p>Owners must demonstrate they can cover any portion of the cost beyond the grant, through personal funds, payment plans, or fundraising. This shared investment ensures the full treatment can be completed.</p></article>
+          <article class="card"><h3>Direct-to-Vet Only</h3><p>No funds are ever given directly to applicants. Payment goes straight to the veterinary provider, ensuring accountability and confirming the funds are used exclusively for the intended medical purpose.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="wrap narrow">
+        <h2>Payment Workflow</h2>
+        <ol>
+          <li>Case approval and grant letter with terms</li>
+          <li>Coordination with veterinary billing team</li>
+          <li>Deposit payment (when needed) and balance on final invoice</li>
+          <li>Owner covers remaining balance based on clinic arrangement</li>
+        </ol>
+        <a class="btn" href="/application-process">View Eligibility and Application Steps</a>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .page { padding-top: 68px; }
+  .page-hero { padding: 3rem 0 2rem; }
+  @media (max-width: 480px) {
+    .page-hero { padding: 2rem 0 1.25rem; }
+    .section { padding: 1.5rem 0; }
+  }
+  .eyebrow { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.7rem; }
+  h1 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 0.8rem; letter-spacing: -0.03em; }
+  h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+  p, li { color: var(--muted); }
+  .narrow { max-width: 760px; }
+  .section { padding: 2rem 0; }
+  .section-alt { background: var(--surface); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
+  .card { border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; background: var(--bg); }
+  ul, ol { padding-left: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .note { margin-top: 0.8rem; }
+  .btn { display: inline-block; margin-top: 1rem; padding: 0.7rem 1.25rem; border-radius: 6px; background: var(--accent); color: #fff; text-decoration: none; font-size: 0.95rem; }
+  .btn:hover { background: var(--accent-hover); }
+</style>

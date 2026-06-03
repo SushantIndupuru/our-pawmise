@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="8 14 94 83" role="img" aria-label="Our Pawmise paw icon">
+  <title>Our Pawmise</title>
+  <!-- Paw icon mark — geometry from ourpawmise-logo.svg (680×120 canvas) cropped to paw region -->
+  <g fill="#d4775d">
+    <ellipse cx="56" cy="74" rx="22" ry="18"/>
+    <ellipse cx="24" cy="48" rx="9"  ry="12" transform="rotate(-30 24 48)"/>
+    <ellipse cx="43" cy="30" rx="9"  ry="12" transform="rotate(-10 43 30)"/>
+    <ellipse cx="62" cy="28" rx="9"  ry="12" transform="rotate(8 62 28)"/>
+    <ellipse cx="82" cy="44" rx="9"  ry="12" transform="rotate(28 82 44)"/>
+  </g>
+</svg>
+
