@@ -5,7 +5,7 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
     vite: {
         preview: {
-            allowedHosts: ['localhost', 'preview2.sushant.art'],
+            allowedHosts: ['localhost'],
         }
     },
     output: "static"
