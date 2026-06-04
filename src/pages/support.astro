@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="Donate – Our Pawmise" description="Support Our Pawmise and help us provide critical veterinary care to pets in need.">
   <!-- PayPal SDK -->
   <script
-    src="https://www.paypal.com/sdk/js?client-id=BAAZTJxIsBXoYwsQKmJrUj41rmguJexTQ5qUj5NyOdbhq2QvsbvuFDxIRTKk8WN-iTxIT0SbgY9inTkdDE&components=buttons&enable-funding=venmo&currency=USD"
+    src="https://www.paypal.com/sdk/js?client-id=BAAZTJxIsBXoYwsQKmJrUj41rmguJexTQ5qUj5NyOdbhq2QvsbvuFDxIRTKk8WN-iTxIT0SbgY9inTkdDE&components=hosted-buttons&disable-funding=venmo&currency=USD"
     is:inline
   ></script>
 
@@ -20,28 +20,24 @@ import Layout from '../layouts/Layout.astro';
       <div class="layout">
         <!-- Donation form -->
         <div class="donate-box">
-          <p class="box-label">Choose an amount</p>
+          <p class="box-label">Quick amounts</p>
           <div class="presets" id="presets">
             <button class="preset" data-val="10">$10</button>
             <button class="preset" data-val="25">$25</button>
             <button class="preset" data-val="50">$50</button>
             <button class="preset" data-val="100">$100</button>
           </div>
-          <div class="custom-row">
-            <label for="donation-amount">Custom amount (USD)</label>
-            <div class="input-wrap">
-              <span class="input-prefix">$</span>
-              <input
-                type="number"
-                id="donation-amount"
-                placeholder="0.00"
-                min="1"
-                step="0.01"
-              />
-            </div>
-            <p class="input-error" id="amount-error">Please enter a valid donation amount.</p>
-          </div>
-          <div id="paypal-buttons"></div>
+          <div id="paypal-button-container-2VJ83JVDSAAAQ"></div>
+          <div class="divider"><span>or</span></div>
+          <a
+            id="paypal-direct-link"
+            href="https://www.paypal.com/ncp/payment/2VJ83JVDSAAAQ"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="paypal-link"
+          >
+            Donate directly via PayPal →
+          </a>
         </div>
 
         <!-- Info sidebar -->
@@ -71,50 +67,44 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <script is:inline>
-  // Preset buttons
+  // PayPal Hosted Button
+  paypal.HostedButtons({
+    hostedButtonId: '2VJ83JVDSAAAQ',
+  }).render('#paypal-button-container-2VJ83JVDSAAAQ');
+
+  // Wire preset buttons → PayPal's own amount input once it renders
   const presets = document.querySelectorAll('.preset');
-  const input = document.getElementById('donation-amount');
+  const directLink = document.getElementById('paypal-direct-link');
+  const BASE_URL = 'https://www.paypal.com/ncp/payment/2VJ83JVDSAAAQ';
 
-  presets.forEach(btn => {
-    btn.addEventListener('click', () => {
-      input.value = btn.dataset.val;
-      presets.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    });
+  function setPayPalAmount(val) {
+    const amountInput = document.querySelector('#paypal-form-fields-container-2VJ83JVDSAAAQ #amount');
+    if (amountInput) {
+      amountInput.value = val;
+      amountInput.dispatchEvent(new Event('input', { bubbles: true }));
+      amountInput.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+    directLink.href = BASE_URL + '?amount=' + parseFloat(val).toFixed(2);
+  }
+
+  // Wait for PayPal to inject its form fields before wiring up
+  const observer = new MutationObserver(function() {
+    const amountInput = document.querySelector('#paypal-form-fields-container-2VJ83JVDSAAAQ #amount');
+    if (amountInput) {
+      observer.disconnect();
+      presets.forEach(btn => {
+        btn.addEventListener('click', () => {
+          presets.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          setPayPalAmount(btn.dataset.val);
+        });
+      });
+    }
   });
 
-  input.addEventListener('input', () => {
-    presets.forEach(b => b.classList.remove('active'));
+  observer.observe(document.getElementById('paypal-button-container-2VJ83JVDSAAAQ'), {
+    childList: true, subtree: true
   });
-
-  // PayPal
-  paypal.Buttons({
-    onClick: function(data, actions) {
-      var raw = document.getElementById('donation-amount').value;
-      var err = document.getElementById('amount-error');
-      if (!raw || parseFloat(raw) <= 0) {
-        err.style.display = 'block';
-        return actions.reject();
-      }
-      err.style.display = 'none';
-      if (parseFloat(raw) === 94.94) {
-        window.location.href = '/thank-you';
-        return actions.reject();
-      }
-      return actions.resolve();
-    },
-    createOrder: function(data, actions) {
-      return actions.order.create({
-        purchase_units: [{ amount: { value: document.getElementById('donation-amount').value } }]
-      });
-    },
-    onApprove: function(data, actions) {
-      return actions.order.capture().then(function() {
-        window.location.href = '/thank-you';
-      });
-    },
-    style: { layout: 'vertical', label: 'donate', shape: 'rect', color: 'gold' }
-  }).render('#paypal-buttons');
 </script>
 
 <style>
@@ -134,7 +124,6 @@ import Layout from '../layouts/Layout.astro';
   @media (max-width: 480px) {
     .page-inner { padding-top: 2.5rem; padding-bottom: 3rem; }
     .page-header { margin-bottom: 2rem; }
-    .preset { flex: 1 1 calc(50% - 0.25rem); text-align: center; }
   }
   .eyebrow {
     font-size: 0.8rem;
@@ -195,40 +184,8 @@ import Layout from '../layouts/Layout.astro';
     background: var(--accent);
     color: #fff;
   }
-
-  .custom-row { margin-bottom: 1.5rem; }
-  .custom-row label { display: block; font-size: 0.875rem; font-weight: 500; color: var(--muted); margin-bottom: 0.4rem; }
-  .input-wrap { position: relative; }
-  .input-prefix {
-    position: absolute;
-    left: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 0.95rem;
-    color: var(--muted);
-    pointer-events: none;
-  }
-  input[type="number"] {
-    width: 100%;
-    padding: 0.6rem 0.75rem 0.6rem 1.75rem;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    font-size: 0.95rem;
-    font-family: inherit;
-    color: var(--text);
-    background: var(--bg);
-    outline: none;
-    transition: border-color 0.15s;
-    -moz-appearance: textfield;
-  }
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
-  input[type="number"]:focus { border-color: var(--accent); }
-  .input-error {
-    display: none;
-    font-size: 0.78rem;
-    color: #c0392b;
-    margin-top: 0.35rem;
+  @media (max-width: 480px) {
+    .preset { flex: 1 1 calc(50% - 0.25rem); text-align: center; }
   }
 
   /* Info sidebar */
@@ -253,4 +210,32 @@ import Layout from '../layouts/Layout.astro';
   .info-card li::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
   .info-card a { color: var(--accent); text-decoration: none; }
   .info-card a:hover { text-decoration: underline; }
+
+  /* Divider + direct link */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1rem 0 0.75rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .paypal-link {
+    display: block;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: opacity 0.15s;
+  }
+  .paypal-link:hover { opacity: 0.75; text-decoration: underline; }
 </style>
