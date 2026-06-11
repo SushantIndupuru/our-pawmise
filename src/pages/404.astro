@@ -2,219 +2,290 @@
 import Layout from '../layouts/Layout.astro';
 ---
 <Layout title="Page Not Found – Our Pawmise" description="The page you were looking for doesn't exist.">
-  <main class="page">
+    <main class="page">
 
-    <header class="page-hero">
-      <div class="wrap">
-        <p class="eyebrow">404 Error</p>
-        <h1>Page Not Found</h1>
-        <p>We couldn't find what you were looking for. It may have been moved, renamed, or never existed.</p>
-      </div>
-    </header>
+        <header class="page-hero">
+            <div class="wrap">
+                <p class="eyebrow">404 Error</p>
+                <h1>Page Not Found</h1>
+                <p>We couldn't find what you were looking for. It may have been moved, renamed, or never existed.</p>
+            </div>
+        </header>
 
-    <section class="section">
-      <div class="wrap center-content">
-        <div class="paw-wrap" aria-hidden="true">
-          <span class="paw">🐾</span>
-          <span class="num">404</span>
-        </div>
-        <p class="lead">Looks like this trail goes nowhere.</p>
-        <p class="sub">Let's get you back on the right path.</p>
-        <div class="actions">
-          <a href="/" class="btn btn-primary">Go Home</a>
-          <a href="/support" class="btn btn-outline">Donate</a>
-        </div>
-      </div>
-    </section>
+        <section class="section">
+            <div class="wrap center-content">
+                <div class="paw-wrap" aria-hidden="true">
+                    <span class="paw">🐾</span>
+                    <span class="num">404</span>
+                </div>
+                <p class="lead">Looks like this trail goes nowhere.</p>
+                <p class="sub">Let's get you back on the right path.</p>
+                <div class="actions">
+                    <a href="/" class="btn btn-primary">Go Home</a>
+                    <a href="/support" class="btn btn-outline">Donate</a>
+                </div>
+            </div>
+        </section>
 
-    <section class="section section-alt">
-      <div class="wrap">
-        <h2>Helpful Pages</h2>
-        <div class="grid">
-          <a href="/operations-plan" class="card">
-            <h3>Operations Plan</h3>
-            <p>Learn how Our Pawmise is structured, governed, and run day-to-day.</p>
-            <span class="card-link">Explore →</span>
-          </a>
-          <a href="/financial-assistance" class="card">
-            <h3>Financial Assistance</h3>
-            <p>Find out how our one-time grants work and what conditions we cover.</p>
-            <span class="card-link">Explore →</span>
-          </a>
-          <a href="/education-outreach" class="card">
-            <h3>Education &amp; Outreach</h3>
-            <p>Resources on preventive care, insurance literacy, and cost planning.</p>
-            <span class="card-link">Explore →</span>
-          </a>
-          <a href="/application-process" class="card">
-            <h3>Apply for a Grant</h3>
-            <p>Review eligibility criteria and learn how to submit a grant application.</p>
-            <span class="card-link">Explore →</span>
-          </a>
-          <a href="/use-cases" class="card">
-            <h3>Use Cases</h3>
-            <p>Real scenarios showing how Our Pawmise makes a difference for families.</p>
-            <span class="card-link">Explore →</span>
-          </a>
-          <a href="/support" class="card card-donate">
-            <h3>Make a Donation</h3>
-            <p>Help us fund critical veterinary care for pets in need across the East Bay.</p>
-            <span class="card-link">Donate →</span>
-          </a>
-        </div>
-      </div>
-    </section>
+        <section class="section section-alt">
+            <div class="wrap">
+                <h2>Helpful Pages</h2>
+                <div class="grid">
+                    <a href="/operations-plan" class="card">
+                        <h3>Operations Plan</h3>
+                        <p>Learn how Our Pawmise is structured, governed, and run day-to-day.</p>
+                        <span class="card-link">Explore →</span>
+                    </a>
+                    <a href="/financial-assistance" class="card">
+                        <h3>Financial Assistance</h3>
+                        <p>Find out how our one-time grants work and what conditions we cover.</p>
+                        <span class="card-link">Explore →</span>
+                    </a>
+                    <a href="/education-outreach" class="card">
+                        <h3>Education &amp; Outreach</h3>
+                        <p>Resources on preventive care, insurance literacy, and cost planning.</p>
+                        <span class="card-link">Explore →</span>
+                    </a>
+                    <a href="/application-process" class="card">
+                        <h3>Apply for a Grant</h3>
+                        <p>Review eligibility criteria and learn how to submit a grant application.</p>
+                        <span class="card-link">Explore →</span>
+                    </a>
+                    <a href="/use-cases" class="card">
+                        <h3>Use Cases</h3>
+                        <p>Real scenarios showing how Our Pawmise makes a difference for families.</p>
+                        <span class="card-link">Explore →</span>
+                    </a>
+                    <a href="/support" class="card card-donate">
+                        <h3>Make a Donation</h3>
+                        <p>Help us fund critical veterinary care for pets in need across the East Bay.</p>
+                        <span class="card-link">Donate →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-  </main>
+    </main>
 </Layout>
 
 <style>
-  /* ── PAGE SHELL (matches every other inner page) ── */
-  .page {
-    padding-top: 68px;
-    min-height: 100svh;
-  }
+    /* ── PAGE SHELL (matches every other inner page) ── */
+    .page {
+        padding-top: 68px;
+        min-height: 100svh;
+    }
 
-  /* ── HERO HEADER (same pattern as financial-assistance, operations-plan, etc.) ── */
-  .page-hero {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 3.5rem 0 2.5rem;
-  }
-  .page-hero .wrap { max-width: 760px; }
-  .eyebrow {
-    font-size: 0.8rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--accent);
-    margin-bottom: 0.5rem;
-  }
-  h1 {
-    font-size: clamp(2rem, 4vw, 2.75rem);
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.75rem;
-  }
-  .page-hero p {
-    color: var(--muted);
-    max-width: 600px;
-    font-size: 1rem;
-  }
+    /* ── HERO HEADER (same pattern as financial-assistance, operations-plan, etc.) ── */
+    .page-hero {
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        padding: 3.5rem 0 2.5rem;
+    }
 
-  /* ── SECTIONS ── */
-  .section { padding: 3.5rem 0; }
-  .section-alt { background: var(--surface); }
+    .page-hero .wrap {
+        max-width: 760px;
+    }
 
-  /* ── CENTRE HERO CONTENT ── */
-  .center-content { text-align: center; max-width: 560px; }
+    .eyebrow {
+        font-size: 0.8rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        margin-bottom: 0.5rem;
+    }
 
-  .paw-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    margin-bottom: 1.5rem;
-  }
-  .paw {
-    font-size: 3rem;
-    line-height: 1;
-    display: inline-block;
-    animation: sway 2.8s ease-in-out infinite;
-  }
-  @keyframes sway {
-    0%, 100% { transform: rotate(-10deg); }
-    50%       { transform: rotate(10deg); }
-  }
-  .num {
-    font-size: clamp(4rem, 18vw, 7.5rem);
-    font-weight: 700;
-    letter-spacing: -0.05em;
-    line-height: 1;
-    color: var(--accent);
-  }
+    h1 {
+        font-size: clamp(2rem, 4vw, 2.75rem);
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        margin-bottom: 0.75rem;
+    }
 
-  .lead {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 0.4rem;
-  }
-  .sub {
-    color: var(--muted);
-    font-size: 0.95rem;
-    margin-bottom: 2rem;
-  }
+    .page-hero p {
+        color: var(--muted);
+        max-width: 600px;
+        font-size: 1rem;
+    }
 
-  /* ── BUTTONS ── */
-  .actions {
-    display: flex;
-    gap: 0.75rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .btn {
-    display: inline-block;
-    border-radius: 6px;
-    padding: 0.7rem 1.5rem;
-    font-size: 0.95rem;
-    font-weight: 500;
-    text-decoration: none;
-    border: 1px solid transparent;
-    transition: background 0.2s, border-color 0.2s, color 0.2s;
-  }
-  .btn-primary { background: var(--accent); color: #fff; }
-  .btn-primary:hover { background: var(--accent-hover); }
-  .btn-outline { border-color: var(--border); color: var(--text); background: var(--bg); }
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    /* ── SECTIONS ── */
+    .section {
+        padding: 3.5rem 0;
+    }
 
-  /* ── SECTION HEADING (same underline accent as other pages) ── */
-  h2 {
-    font-size: 1.75rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
-  }
-  h2::after {
-    content: '';
-    display: block;
-    width: 2.6rem;
-    height: 2px;
-    margin-top: 0.5rem;
-    background: var(--accent);
-  }
+    .section-alt {
+        background: var(--surface);
+    }
 
-  /* ── CARD GRID (mirrors index / financial-assistance) ── */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 1.25rem;
-    margin-top: 1.25rem;
-  }
-  .card {
-    display: block;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.5rem;
-    text-decoration: none;
-    color: inherit;
-    transition: transform 0.2s ease, border-color 0.2s ease;
-  }
-  .card:hover {
-    transform: translateY(-2px);
-    border-color: #d8c8bf;
-  }
-  .card h3   { font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--text); }
-  .card p    { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.75rem; }
-  .card-link { font-size: 0.875rem; color: var(--accent); font-weight: 500; }
-  .card-donate { border-color: #e8d4cc; }
-  .card-donate:hover { border-color: var(--accent); }
-  .card-donate .card-link { font-weight: 600; }
+    /* ── CENTRE HERO CONTENT ── */
+    .center-content {
+        text-align: center;
+        max-width: 560px;
+    }
 
-  @media (max-width: 480px) {
-    .page-hero { padding: 2.5rem 0 2rem; }
-    .grid { grid-template-columns: 1fr; }
-  }
+    .paw-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .paw {
+        font-size: 3rem;
+        line-height: 1;
+        display: inline-block;
+        animation: sway 2.8s ease-in-out infinite;
+    }
+
+    @keyframes sway {
+        0%, 100% {
+            transform: rotate(-10deg);
+        }
+        50% {
+            transform: rotate(10deg);
+        }
+    }
+
+    .num {
+        font-size: clamp(4rem, 18vw, 7.5rem);
+        font-weight: 700;
+        letter-spacing: -0.05em;
+        line-height: 1;
+        color: var(--accent);
+    }
+
+    .lead {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 0.4rem;
+    }
+
+    .sub {
+        color: var(--muted);
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+    }
+
+    /* ── BUTTONS ── */
+    .actions {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-block;
+        border-radius: 6px;
+        padding: 0.7rem 1.5rem;
+        font-size: 0.95rem;
+        font-weight: 500;
+        text-decoration: none;
+        border: 1px solid transparent;
+        transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    .btn-primary {
+        background: var(--accent);
+        color: #fff;
+    }
+
+    .btn-primary:hover {
+        background: var(--accent-hover);
+    }
+
+    .btn-outline {
+        border-color: var(--border);
+        color: var(--text);
+        background: var(--bg);
+    }
+
+    .btn-outline:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+    }
+
+    /* ── SECTION HEADING (same underline accent as other pages) ── */
+    h2 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+    }
+
+    h2::after {
+        content: '';
+        display: block;
+        width: 2.6rem;
+        height: 2px;
+        margin-top: 0.5rem;
+        background: var(--accent);
+    }
+
+    /* ── CARD GRID (mirrors index / financial-assistance) ── */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1.25rem;
+        margin-top: 1.25rem;
+    }
+
+    .card {
+        display: block;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1.5rem;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-2px);
+        border-color: #d8c8bf;
+    }
+
+    .card h3 {
+        font-size: 1.05rem;
+        margin-bottom: 0.5rem;
+        color: var(--text);
+    }
+
+    .card p {
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin-bottom: 0.75rem;
+    }
+
+    .card-link {
+        font-size: 0.875rem;
+        color: var(--accent);
+        font-weight: 500;
+    }
+
+    .card-donate {
+        border-color: #e8d4cc;
+    }
+
+    .card-donate:hover {
+        border-color: var(--accent);
+    }
+
+    .card-donate .card-link {
+        font-weight: 600;
+    }
+
+    @media (max-width: 480px) {
+        .page-hero {
+            padding: 2.5rem 0 2rem;
+        }
+
+        .grid {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
 

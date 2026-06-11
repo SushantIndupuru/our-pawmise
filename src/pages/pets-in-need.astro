@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Pets in Need - Our Pawmise"
+        description="Meet the pets and families Our Pawmise is helping. Stories and photos coming soon.">
+    <main class="page">
+        <header class="page-hero">
+            <div class="wrap">
+                <p class="eyebrow">Our Recipients</p>
+                <h1>Pets in Need</h1>
+                <p>
+                    This is where we'll share the stories and photos of pets receiving support through Our Pawmise —
+                    so you can see exactly who your donation is helping.
+                </p>
+            </div>
+        </header>
+
+        <section class="section">
+            <div class="wrap narrow">
+                <div class="placeholder">
+                    <p>We're just getting started. As we approve our first grants, we'll add each pet's story here.</p>
+                    <a class="btn" href="/support">Donate to Help a Pet</a>
+                </div>
+            </div>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    .page {
+        padding-top: 68px;
+    }
+
+    .page-hero {
+        padding: 3rem 0 2rem;
+    }
+
+    @media (max-width: 480px) {
+        .page-hero {
+            padding: 2rem 0 1.25rem;
+        }
+
+        .section {
+            padding: 1.5rem 0;
+        }
+    }
+
+    .eyebrow {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        margin-bottom: 0.7rem;
+    }
+
+    h1 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        margin-bottom: 0.8rem;
+        letter-spacing: -0.03em;
+    }
+
+    p {
+        color: var(--muted);
+    }
+
+    .narrow {
+        max-width: 760px;
+    }
+
+    .section {
+        padding: 2rem 0;
+    }
+
+    .placeholder {
+        border: 1px dashed var(--border);
+        border-radius: 10px;
+        padding: 2rem 1.4rem;
+        background: var(--surface);
+        text-align: center;
+    }
+
+    .btn {
+        display: inline-block;
+        margin-top: 1.25rem;
+        padding: 0.7rem 1.25rem;
+        border-radius: 6px;
+        background: var(--accent);
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.95rem;
+    }
+</style>

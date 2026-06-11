@@ -1,241 +1,311 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-<Layout title="Donate – Our Pawmise" description="Support Our Pawmise and help us provide critical veterinary care to pets in need.">
-  <!-- PayPal SDK -->
-  <script
-    src="https://www.paypal.com/sdk/js?client-id=BAAZTJxIsBXoYwsQKmJrUj41rmguJexTQ5qUj5NyOdbhq2QvsbvuFDxIRTKk8WN-iTxIT0SbgY9inTkdDE&components=hosted-buttons&disable-funding=venmo&currency=USD"
-    is:inline
-  ></script>
+<Layout title="Donate – Our Pawmise"
+        description="Support Our Pawmise and help us provide critical veterinary care to pets in need.">
+    <!-- PayPal SDK -->
+    <script
+            src="https://www.paypal.com/sdk/js?client-id=BAAZTJxIsBXoYwsQKmJrUj41rmguJexTQ5qUj5NyOdbhq2QvsbvuFDxIRTKk8WN-iTxIT0SbgY9inTkdDE&components=hosted-buttons&disable-funding=venmo&currency=USD"
+            is:inline
+    ></script>
 
-  <main class="page">
-    <div class="wrap page-inner">
+    <main class="page">
+        <div class="wrap page-inner">
 
-      <div class="page-header">
-        <p class="eyebrow">Support Us</p>
-        <h1>Make a Donation</h1>
-        <p class="subtitle">Your gift goes directly toward critical veterinary care for pets in need.</p>
-      </div>
+            <div class="page-header">
+                <p class="eyebrow">Support Us</p>
+                <h1>Make a Donation</h1>
+                <p class="subtitle">Your gift goes directly toward critical veterinary care for pets in need.</p>
+            </div>
 
-      <div class="layout">
-        <!-- Donation form -->
-        <div class="donate-box">
-          <p class="box-label">Quick amounts</p>
-          <div class="presets" id="presets">
-            <button class="preset" data-val="10">$10</button>
-            <button class="preset" data-val="25">$25</button>
-            <button class="preset" data-val="50">$50</button>
-            <button class="preset" data-val="100">$100</button>
-          </div>
-          <div id="paypal-button-container-2VJ83JVDSAAAQ"></div>
-          <div class="divider"><span>or</span></div>
-          <a
-            id="paypal-direct-link"
-            href="https://www.paypal.com/ncp/payment/2VJ83JVDSAAAQ"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="paypal-link"
-          >
-            Donate directly via PayPal →
-          </a>
+            <div class="layout">
+                <!-- Donation form -->
+                <div class="donate-box">
+                    <p class="box-label">Quick amounts</p>
+                    <div class="presets" id="presets">
+                        <button class="preset" data-val="10">$10</button>
+                        <button class="preset" data-val="25">$25</button>
+                        <button class="preset" data-val="50">$50</button>
+                        <button class="preset" data-val="100">$100</button>
+                    </div>
+                    <div id="paypal-button-container-2VJ83JVDSAAAQ"></div>
+                    <div class="divider"><span>or</span></div>
+                    <a
+                            id="paypal-direct-link"
+                            href="https://www.paypal.com/ncp/payment/2VJ83JVDSAAAQ"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="paypal-link"
+                    >
+                        Donate directly via PayPal →
+                    </a>
+                </div>
+
+                <!-- Info sidebar -->
+                <div class="info-side">
+                    <div class="info-card">
+                        <p class="info-title">501(c)(3) Tax-Exempt</p>
+                        <p>EIN: 39-2932152</p>
+                        <p>All donations are tax-deductible to the full extent allowed by law.</p>
+                    </div>
+                    <div class="info-card">
+                        <p class="info-title">Where your money goes</p>
+                        <ul>
+                            <li>Grants paid directly to veterinary clinics</li>
+                            <li>Non-routine treatments (oncology, cardiology, orthopedic)</li>
+                            <li>Pet owner education &amp; outreach</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <p class="info-title">Questions?</p>
+                        <p>Email us at <a href="mailto:contact@ourpawmise.org">contact@ourpawmise.org</a></p>
+                    </div>
+                </div>
+            </div>
+
         </div>
-
-        <!-- Info sidebar -->
-        <div class="info-side">
-          <div class="info-card">
-            <p class="info-title">501(c)(3) Tax-Exempt</p>
-            <p>EIN: 39-2932152</p>
-            <p>All donations are tax-deductible to the full extent allowed by law.</p>
-          </div>
-          <div class="info-card">
-            <p class="info-title">Where your money goes</p>
-            <ul>
-              <li>Grants paid directly to veterinary clinics</li>
-              <li>Non-routine treatments (oncology, cardiology, orthopedic)</li>
-              <li>Pet owner education &amp; outreach</li>
-            </ul>
-          </div>
-          <div class="info-card">
-            <p class="info-title">Questions?</p>
-            <p>Email us at <a href="mailto:contact@ourpawmise.org">contact@ourpawmise.org</a></p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </main>
+    </main>
 </Layout>
 
 <script is:inline>
   // PayPal Hosted Button
   paypal.HostedButtons({
     hostedButtonId: '2VJ83JVDSAAAQ',
+    onApprove: function() {
+      window.location.href = '/thank-you';
+    },
   }).render('#paypal-button-container-2VJ83JVDSAAAQ');
 
-  // Wire preset buttons → PayPal's own amount input once it renders
-  const presets = document.querySelectorAll('.preset');
-  const directLink = document.getElementById('paypal-direct-link');
-  const BASE_URL = 'https://www.paypal.com/ncp/payment/2VJ83JVDSAAAQ';
+    // Wire preset buttons → PayPal's own amount input once it renders
+    const presets = document.querySelectorAll('.preset');
+    const directLink = document.getElementById('paypal-direct-link');
+    const BASE_URL = 'https://www.paypal.com/ncp/payment/2VJ83JVDSAAAQ';
 
-  function setPayPalAmount(val) {
-    const amountInput = document.querySelector('#paypal-form-fields-container-2VJ83JVDSAAAQ #amount');
-    if (amountInput) {
-      amountInput.value = val;
-      amountInput.dispatchEvent(new Event('input', { bubbles: true }));
-      amountInput.dispatchEvent(new Event('change', { bubbles: true }));
+    function setPayPalAmount(val) {
+        const amountInput = document.querySelector('#paypal-form-fields-container-2VJ83JVDSAAAQ #amount');
+        if (amountInput) {
+            amountInput.value = val;
+            amountInput.dispatchEvent(new Event('input', {bubbles: true}));
+            amountInput.dispatchEvent(new Event('change', {bubbles: true}));
+        }
+        directLink.href = BASE_URL + '?amount=' + parseFloat(val).toFixed(2);
     }
-    directLink.href = BASE_URL + '?amount=' + parseFloat(val).toFixed(2);
-  }
 
-  // Wait for PayPal to inject its form fields before wiring up
-  const observer = new MutationObserver(function() {
-    const amountInput = document.querySelector('#paypal-form-fields-container-2VJ83JVDSAAAQ #amount');
-    if (amountInput) {
-      observer.disconnect();
-      presets.forEach(btn => {
-        btn.addEventListener('click', () => {
-          presets.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          setPayPalAmount(btn.dataset.val);
-        });
-      });
-    }
-  });
+    // Wait for PayPal to inject its form fields before wiring up
+    const observer = new MutationObserver(function () {
+        const amountInput = document.querySelector('#paypal-form-fields-container-2VJ83JVDSAAAQ #amount');
+        if (amountInput) {
+            observer.disconnect();
+            presets.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    presets.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    setPayPalAmount(btn.dataset.val);
+                });
+            });
+        }
+    });
 
-  observer.observe(document.getElementById('paypal-button-container-2VJ83JVDSAAAQ'), {
-    childList: true, subtree: true
-  });
+    observer.observe(document.getElementById('paypal-button-container-2VJ83JVDSAAAQ'), {
+        childList: true, subtree: true
+    });
 </script>
 
 <style>
-  .page {
-    padding-top: 68px;
-    min-height: 100svh;
-    display: flex;
-    align-items: flex-start;
-  }
-  .page-inner {
-    padding-top: 4rem;
-    padding-bottom: 5rem;
-    max-width: 860px;
-  }
-  .page-header { margin-bottom: 3rem; }
+    .page {
+        padding-top: 68px;
+        min-height: 100svh;
+        display: flex;
+        align-items: flex-start;
+    }
 
-  @media (max-width: 480px) {
-    .page-inner { padding-top: 2.5rem; padding-bottom: 3rem; }
-    .page-header { margin-bottom: 2rem; }
-  }
-  .eyebrow {
-    font-size: 0.8rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-    margin-bottom: 0.5rem;
-  }
-  h1 {
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.5rem;
-  }
-  .subtitle { font-size: 1rem; color: var(--muted); }
+    .page-inner {
+        padding-top: 4rem;
+        padding-bottom: 5rem;
+        max-width: 860px;
+    }
 
-  /* Layout */
-  .layout {
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 2rem;
-    align-items: start;
-  }
-  @media (max-width: 700px) {
-    .layout { grid-template-columns: 1fr; }
-  }
+    .page-header {
+        margin-bottom: 3rem;
+    }
 
-  /* Donate box */
-  .donate-box {
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.75rem;
-    background: var(--surface);
-  }
-  .box-label { font-size: 0.9rem; font-weight: 500; color: var(--muted); margin-bottom: 0.75rem; }
+    @media (max-width: 480px) {
+        .page-inner {
+            padding-top: 2.5rem;
+            padding-bottom: 3rem;
+        }
 
-  .presets {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 1.25rem;
-  }
-  .preset {
-    padding: 0.55rem 1.1rem;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    background: var(--bg);
-    font-size: 0.95rem;
-    font-weight: 500;
-    cursor: pointer;
-    font-family: inherit;
-    color: var(--text);
-    transition: all 0.15s;
-  }
-  .preset:hover, .preset.active {
-    border-color: var(--accent);
-    background: var(--accent);
-    color: #fff;
-  }
-  @media (max-width: 480px) {
-    .preset { flex: 1 1 calc(50% - 0.25rem); text-align: center; }
-  }
+        .page-header {
+            margin-bottom: 2rem;
+        }
+    }
 
-  /* Info sidebar */
-  .info-side { display: flex; flex-direction: column; gap: 1rem; }
-  .info-card {
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.25rem;
-    background: var(--surface);
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-  .info-title {
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--text);
-    margin-bottom: 0.5rem;
-  }
-  .info-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
-  .info-card li { padding-left: 1rem; position: relative; }
-  .info-card li::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
-  .info-card a { color: var(--accent); text-decoration: none; }
-  .info-card a:hover { text-decoration: underline; }
+    .eyebrow {
+        font-size: 0.8rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        margin-bottom: 0.5rem;
+    }
 
-  /* Divider + direct link */
-  .divider {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin: 1rem 0 0.75rem;
-    color: var(--muted);
-    font-size: 0.8rem;
-  }
-  .divider::before, .divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-  .paypal-link {
-    display: block;
-    text-align: center;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--accent);
-    text-decoration: none;
-    padding: 0.5rem;
-    border-radius: 6px;
-    transition: opacity 0.15s;
-  }
-  .paypal-link:hover { opacity: 0.75; text-decoration: underline; }
+    h1 {
+        font-size: clamp(2rem, 4vw, 2.5rem);
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        color: var(--muted);
+    }
+
+    /* Layout */
+    .layout {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 2rem;
+        align-items: start;
+    }
+
+    @media (max-width: 700px) {
+        .layout {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Donate box */
+    .donate-box {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.75rem;
+        background: var(--surface);
+    }
+
+    .box-label {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--muted);
+        margin-bottom: 0.75rem;
+    }
+
+    .presets {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.25rem;
+    }
+
+    .preset {
+        padding: 0.55rem 1.1rem;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background: var(--bg);
+        font-size: 0.95rem;
+        font-weight: 500;
+        cursor: pointer;
+        font-family: inherit;
+        color: var(--text);
+        transition: all 0.15s;
+    }
+
+    .preset:hover, .preset.active {
+        border-color: var(--accent);
+        background: var(--accent);
+        color: #fff;
+    }
+
+    @media (max-width: 480px) {
+        .preset {
+            flex: 1 1 calc(50% - 0.25rem);
+            text-align: center;
+        }
+    }
+
+    /* Info sidebar */
+    .info-side {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .info-card {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1.25rem;
+        background: var(--surface);
+        font-size: 0.9rem;
+        color: var(--muted);
+        line-height: 1.6;
+    }
+
+    .info-title {
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: var(--text);
+        margin-bottom: 0.5rem;
+    }
+
+    .info-card ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .info-card li {
+        padding-left: 1rem;
+        position: relative;
+    }
+
+    .info-card li::before {
+        content: '–';
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+    }
+
+    .info-card a {
+        color: var(--accent);
+        text-decoration: none;
+    }
+
+    .info-card a:hover {
+        text-decoration: underline;
+    }
+
+    /* Divider + direct link */
+    .divider {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin: 1rem 0 0.75rem;
+        color: var(--muted);
+        font-size: 0.8rem;
+    }
+
+    .divider::before, .divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+    }
+
+    .paypal-link {
+        display: block;
+        text-align: center;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--accent);
+        text-decoration: none;
+        padding: 0.5rem;
+        border-radius: 6px;
+        transition: opacity 0.15s;
+    }
+
+    .paypal-link:hover {
+        opacity: 0.75;
+        text-decoration: underline;
+    }
 </style>
