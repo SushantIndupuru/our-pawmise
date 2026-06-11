@@ -2,68 +2,78 @@
 import Layout from '../layouts/Layout.astro';
 ---
 <Layout title="Thank You – Our Pawmise">
-  <main class="page">
-    <div class="wrap page-inner">
-      <div class="thank-card">
-        <div class="icon">♥</div>
-        <h1>Thank you!</h1>
-        <p>Your contribution goes directly toward providing critical veterinary care to animals who need it most. We are so grateful for your support, and every dollar counts.</p>
-        <a href="/" class="btn">Back to Home</a>
-      </div>
-    </div>
-  </main>
+    <main class="page">
+        <div class="wrap page-inner">
+            <div class="thank-card">
+                <div class="icon">♥</div>
+                <h1>Thank you!</h1>
+                <p>Your contribution goes directly toward providing critical veterinary care to animals who need it
+                    most. We are so grateful for your support, and every dollar counts.</p>
+                <a href="/" class="btn">Back to Home</a>
+            </div>
+        </div>
+    </main>
 </Layout>
 
 <style>
-  .page {
-    padding-top: 60px;
-    min-height: 100svh;
-    display: flex;
-    align-items: center;
-    background: var(--bg);
-  }
-  .page-inner {
-    padding-top: 3rem;
-    padding-bottom: 5rem;
-    display: flex;
-    justify-content: center;
-  }
-  .thank-card {
-    max-width: 480px;
-    width: 100%;
-    text-align: center;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 3rem 2.5rem;
-    background: var(--surface);
-  }
-  .icon {
-    font-size: 2.5rem;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-  h1 {
-    font-size: 2rem;
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    margin-bottom: 1rem;
-  }
-  p {
-    font-size: 0.925rem;
-    color: var(--muted);
-    line-height: 1.65;
-    margin-bottom: 2rem;
-  }
-  .btn {
-    display: inline-block;
-    padding: 0.65rem 1.75rem;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-decoration: none;
-    background: var(--accent);
-    color: #fff;
-    transition: background 0.2s;
-  }
-  .btn:hover { background: var(--accent-hover); }
+    .page {
+        padding-top: 60px;
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+        background: var(--bg);
+    }
+
+    .page-inner {
+        padding-top: 3rem;
+        padding-bottom: 5rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    .thank-card {
+        max-width: 480px;
+        width: 100%;
+        text-align: center;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 3rem 2.5rem;
+        background: var(--surface);
+    }
+
+    .icon {
+        font-size: 2.5rem;
+        color: var(--accent);
+        margin-bottom: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 0.925rem;
+        color: var(--muted);
+        line-height: 1.65;
+        margin-bottom: 2rem;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 0.65rem 1.75rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        background: var(--accent);
+        color: #fff;
+        transition: background 0.2s;
+    }
+
+    .btn:hover {
+        background: var(--accent-hover);
+    }
 </style>
