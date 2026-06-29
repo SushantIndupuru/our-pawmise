@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import {Image} from 'astro:assets';
+import coco from '../assets/coco.jpg';
 ---
 <Layout title="Pets in Need - Our Pawmise"
         description="Meet the pets and families Our Pawmise is helping. Stories and photos coming soon.">
@@ -9,16 +11,24 @@ import Layout from '../layouts/Layout.astro';
                 <p class="eyebrow">Our Recipients</p>
                 <h1>Pets in Need</h1>
                 <p>
-                    This is where we'll share the stories and photos of pets receiving support through Our Pawmise, so you can see exactly who your donation is helping.
+                    These are the pets receiving support through Our Pawmise, so you can see exactly who your donation is helping.
                 </p>
             </div>
         </header>
 
         <section class="section">
             <div class="wrap narrow">
-                <div class="placeholder">
-                    <p>We're just getting started. As we approve our first grants, we'll add each pet's story here.</p>
-                    <a class="btn" href="/support">Donate to Help a Pet</a>
+                <div class="pets-grid">
+                    <figure class="pet-card">
+                        <div class="pet-media">
+                            <Image src={coco} alt="Coco" class="pet-photo" width={1161} height={1546} loading="lazy"/>
+                        </div>
+                        <figcaption>
+                            <strong>Coco</strong>
+                            <span>Meet Coco, a 7 year old boxer with a mast cell tumor. She needs your help!</span>
+                            <a class="btn" href="/support">Donate to Help Coco</a>
+                        </figcaption>
+                    </figure>
                 </div>
             </div>
         </section>
@@ -70,22 +80,58 @@ import Layout from '../layouts/Layout.astro';
         padding: 2rem 0;
     }
 
-    .placeholder {
-        border: 1px dashed var(--border);
+    .pets-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .pet-card {
+        margin: 0;
+        border: 1px solid var(--border);
         border-radius: 10px;
-        padding: 2rem 1.4rem;
         background: var(--surface);
-        text-align: center;
+        overflow: hidden;
+    }
+
+    .pet-media {
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        background: var(--border);
+    }
+
+    .pet-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    figcaption {
+        padding: 1.1rem 1.25rem 1.4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    figcaption strong {
+        font-size: 1.15rem;
+    }
+
+    figcaption span {
+        color: var(--muted);
+        font-size: 0.95rem;
     }
 
     .btn {
         display: inline-block;
-        margin-top: 1.25rem;
+        margin-top: 0.85rem;
         padding: 0.7rem 1.25rem;
         border-radius: 6px;
         background: var(--accent);
         color: #fff;
         text-decoration: none;
         font-size: 0.95rem;
+        align-self: flex-start;
     }
 </style>
