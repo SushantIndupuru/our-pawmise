@@ -1,0 +1,791 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {Image} from 'astro:assets';
+import pebbleVideo from '../assets/pebble.mov';
+import pebblePhoto from '../assets/pebble.JPG';
+import tintinVideo from '../assets/tintin.mov';
+import kajuVideo from '../assets/kaju.mov';
+import kajuVideo2 from '../assets/kaju2.mov';
+
+const pets = [
+    {
+        name: 'Pebble',
+        description:
+            'Pebble came to us after being rescued and needing a solid medical foundation. Our Pawmise helped cover core veterinary care and vaccinations, giving Pebble a healthy start and a much brighter path forward with a caring family.',
+        media: [
+            {type: 'video', src: pebbleVideo, poster: pebblePhoto.src},
+            {type: 'image', src: pebblePhoto},
+        ],
+    },
+    {
+        name: 'Tintin',
+        description:
+            "Tintin's family was hit with unexpected costs after a full wellness exam uncovered kidney concerns. We helped fund the check-up and ongoing kidney medication so Tintin could receive steady, attentive care without treatment being put on hold.",
+        media: [
+            {type: 'video', src: tintinVideo},
+        ],
+    },
+    {
+        name: 'Kaju',
+        description:
+            'When Kaju was diagnosed with babesiosis, his family needed help quickly with testing and treatment. Our Pawmise supported PCR diagnostics and the medications Kaju needed to fight the infection and work toward a full recovery.',
+        media: [
+            {type: 'video', src: kajuVideo},
+            {type: 'video', src: kajuVideo2},
+        ],
+    },
+];
+---
+<Layout title="Pets We've Helped - Our Pawmise"
+        description="Success stories from pets and families Our Pawmise has supported.">
+    <main class="page">
+        <header class="page-hero">
+            <div class="wrap">
+                <p class="eyebrow">Our Impact</p>
+                <h1>Pets We've Helped</h1>
+                <p>
+                    Real stories from pets and families who received support through Our Pawmise.
+                </p>
+            </div>
+        </header>
+
+        <section class="section">
+            <div class="wrap">
+                <div class="pets-grid">
+                    {pets.map((pet) => (
+                        <figure class="pet-card">
+                            <div class="media-carousel" data-media-carousel data-pet={pet.name}
+                                 aria-roledescription="carousel" aria-label={`Photos and videos of ${pet.name}`}>
+                                <div class="carousel-viewport">
+                                    {pet.media.length > 1 && (
+                                        <div class="carousel-controls">
+                                            <button type="button" class="carousel-btn" data-carousel-prev
+                                                    aria-label={`Previous photo of ${pet.name}`}>
+                                                <span aria-hidden="true">&larr;</span>
+                                            </button>
+                                            <button type="button" class="carousel-btn" data-carousel-next
+                                                    aria-label={`Next photo of ${pet.name}`}>
+                                                <span aria-hidden="true">&rarr;</span>
+                                            </button>
+                                        </div>
+                                    )}
+                                    <div class="carousel-track" data-carousel-track>
+                                        {pet.media.map((item, index) => (
+                                            <div class="carousel-slide" data-carousel-slide
+                                                 aria-hidden={index !== 0 ? 'true' : 'false'}>
+                                                {item.type === 'video' ? (
+                                                    <div class="video-player" data-video-player>
+                                                        <video class="pet-video" src={item.src} poster={item.poster}
+                                                               playsinline preload="metadata"
+                                                               aria-label={`Video of ${pet.name}`}
+                                                               data-carousel-video></video>
+                                                        <button type="button" class="video-play-overlay"
+                                                                data-video-play-overlay
+                                                                aria-label={`Play video of ${pet.name}`}>
+                                                            <span class="video-play-icon" aria-hidden="true"></span>
+                                                        </button>
+                                                        <div class="video-controls">
+                                                            <button type="button" class="video-btn" data-video-play-pause
+                                                                    aria-label="Play">
+                                                                <span class="icon-play" aria-hidden="true"></span>
+                                                            </button>
+                                                            <div class="video-progress-wrap">
+                                                                <input type="range" class="video-progress"
+                                                                       data-video-progress min="0" max="100" value="0"
+                                                                       aria-label="Seek"/>
+                                                            </div>
+                                                            <span class="video-time" data-video-time>0:00 / 0:00</span>
+                                                            <button type="button" class="video-btn" data-video-mute
+                                                                    aria-label="Mute">
+                                                                <span class="icon-volume" aria-hidden="true"></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <Image src={item.src} alt={pet.name} class="pet-photo"
+                                                           width={1200} height={900} loading="lazy"/>
+                                                )}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                                {pet.media.length > 1 && (
+                                    <div class="carousel-dots" role="tablist" aria-label={`${pet.name} media`}>
+                                        {pet.media.map((_, index) => (
+                                            <button type="button" class="carousel-dot" role="tab"
+                                                    data-carousel-dot={index}
+                                                    aria-label={`Show media ${index + 1} of ${pet.name}`}
+                                                    aria-selected={index === 0 ? 'true' : 'false'}></button>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                            <figcaption>
+                                <strong>{pet.name}</strong>
+                                <p>{pet.description}</p>
+                            </figcaption>
+                        </figure>
+                    ))}
+                </div>
+            </div>
+        </section>
+    </main>
+</Layout>
+
+<script>
+    (function () {
+        function formatTime(seconds) {
+            if (!isFinite(seconds)) return '0:00';
+            var mins = Math.floor(seconds / 60);
+            var secs = Math.floor(seconds % 60);
+            return mins + ':' + String(secs).padStart(2, '0');
+        }
+
+        function setPlayState(player, playing) {
+            var overlay = player.querySelector('[data-video-play-overlay]');
+            var playPauseBtn = player.querySelector('[data-video-play-pause]');
+            if (overlay) {
+                overlay.hidden = playing;
+            }
+            if (playPauseBtn) {
+                playPauseBtn.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+                playPauseBtn.classList.toggle('is-playing', playing);
+            }
+        }
+
+        document.querySelectorAll('[data-video-player]').forEach(function (player) {
+            var video = player.querySelector('[data-carousel-video]');
+            var overlay = player.querySelector('[data-video-play-overlay]');
+            var playPauseBtn = player.querySelector('[data-video-play-pause]');
+            var progress = player.querySelector('[data-video-progress]');
+            var timeLabel = player.querySelector('[data-video-time]');
+            var muteBtn = player.querySelector('[data-video-mute]');
+            if (!video) return;
+
+            function updateTime() {
+                var current = formatTime(video.currentTime);
+                var total = formatTime(video.duration);
+                timeLabel.textContent = current + ' / ' + total;
+                if (video.duration) {
+                    progress.value = String((video.currentTime / video.duration) * 100);
+                }
+            }
+
+            function togglePlay() {
+                if (video.paused) {
+                    document.querySelectorAll('[data-carousel-video]').forEach(function (other) {
+                        if (other !== video && !other.paused) {
+                            other.pause();
+                            var otherPlayer = other.closest('[data-video-player]');
+                            if (otherPlayer) setPlayState(otherPlayer, false);
+                        }
+                    });
+                    video.play().catch(function () {});
+                } else {
+                    video.pause();
+                }
+            }
+
+            overlay.addEventListener('click', togglePlay);
+            playPauseBtn.addEventListener('click', togglePlay);
+
+            video.addEventListener('click', function () {
+                if (!video.paused) {
+                    video.pause();
+                }
+            });
+
+            video.addEventListener('play', function () {
+                setPlayState(player, true);
+            });
+
+            video.addEventListener('pause', function () {
+                setPlayState(player, false);
+            });
+
+            video.addEventListener('ended', function () {
+                setPlayState(player, false);
+            });
+
+            video.addEventListener('loadedmetadata', updateTime);
+            video.addEventListener('timeupdate', updateTime);
+
+            progress.addEventListener('input', function () {
+                if (video.duration) {
+                    video.currentTime = (Number(progress.value) / 100) * video.duration;
+                }
+            });
+
+            muteBtn.addEventListener('click', function () {
+                video.muted = !video.muted;
+                muteBtn.classList.toggle('is-muted', video.muted);
+                muteBtn.setAttribute('aria-label', video.muted ? 'Unmute' : 'Mute');
+            });
+
+            setPlayState(player, false);
+        });
+
+        document.querySelectorAll('[data-media-carousel]').forEach(function (carousel) {
+            var track = carousel.querySelector('[data-carousel-track]');
+            var slides = Array.from(carousel.querySelectorAll('[data-carousel-slide]'));
+            var videos = Array.from(carousel.querySelectorAll('[data-carousel-video]'));
+            var dots = Array.from(carousel.querySelectorAll('[data-carousel-dot]'));
+            var prevBtn = carousel.querySelector('[data-carousel-prev]');
+            var nextBtn = carousel.querySelector('[data-carousel-next]');
+            var current = 0;
+            var touchStartX = 0;
+            var touchTarget = null;
+
+            function pauseVideos() {
+                videos.forEach(function (video) {
+                    video.pause();
+                    var player = video.closest('[data-video-player]');
+                    if (player) setPlayState(player, false);
+                });
+            }
+
+            if (slides.length <= 1) {
+                return;
+            }
+
+            function setSlide(index) {
+                current = (index + slides.length) % slides.length;
+                track.style.transform = 'translateX(-' + (current * 100) + '%)';
+
+                slides.forEach(function (slide, i) {
+                    slide.setAttribute('aria-hidden', i === current ? 'false' : 'true');
+                });
+
+                dots.forEach(function (dot, i) {
+                    dot.setAttribute('aria-selected', i === current ? 'true' : 'false');
+                });
+
+                pauseVideos();
+            }
+
+            prevBtn.addEventListener('click', function () {
+                setSlide(current - 1);
+            });
+
+            nextBtn.addEventListener('click', function () {
+                setSlide(current + 1);
+            });
+
+            dots.forEach(function (dot) {
+                dot.addEventListener('click', function () {
+                    setSlide(Number(dot.getAttribute('data-carousel-dot')));
+                });
+            });
+
+            carousel.addEventListener('touchstart', function (event) {
+                touchStartX = event.changedTouches[0].screenX;
+                touchTarget = event.target;
+            }, {passive: true});
+
+            carousel.addEventListener('touchend', function (event) {
+                if (touchTarget && (
+                    touchTarget.closest('button') ||
+                    touchTarget.closest('input') ||
+                    touchTarget.closest('[data-video-play-overlay]')
+                )) return;
+
+                var touchedVideo = touchTarget && touchTarget.closest('[data-carousel-video]');
+                if (touchedVideo && !touchedVideo.paused) return;
+
+                var delta = event.changedTouches[0].screenX - touchStartX;
+                if (Math.abs(delta) < 40) return;
+                setSlide(delta > 0 ? current - 1 : current + 1);
+            }, {passive: true});
+
+            setSlide(0);
+        });
+    })();
+</script>
+
+<style>
+    .page {
+        padding-top: 68px;
+    }
+
+    .page-hero {
+        padding: 3rem 0 2rem;
+    }
+
+    @media (max-width: 480px) {
+        .page-hero {
+            padding: 2rem 0 1.25rem;
+        }
+
+        .section {
+            padding: 1.5rem 0;
+        }
+    }
+
+    .eyebrow {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        margin-bottom: 0.7rem;
+    }
+
+    h1 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        margin-bottom: 0.8rem;
+        letter-spacing: -0.03em;
+    }
+
+    .page-hero p {
+        color: var(--muted);
+    }
+
+    .section {
+        padding: 2rem 0 3rem;
+    }
+
+    .pets-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+        gap: 1.5rem;
+        align-items: start;
+    }
+
+    .pet-card {
+        margin: 0;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: var(--surface);
+        overflow: hidden;
+        min-width: 0;
+    }
+
+    .media-carousel {
+        position: relative;
+    }
+
+    .carousel-viewport {
+        position: relative;
+        overflow: hidden;
+        background: var(--border);
+        --video-controls-height: 3.25rem;
+    }
+
+    .carousel-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        inset: 0 0 var(--video-controls-height);
+        padding: 0 0.5rem;
+        pointer-events: none;
+        z-index: 3;
+    }
+
+    .carousel-track {
+        display: flex;
+        transition: transform 0.35s ease;
+    }
+
+    .carousel-slide {
+        flex: 0 0 100%;
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        background: #1c1917;
+    }
+
+    .pet-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .video-player {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: #1c1917;
+    }
+
+    .pet-video {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: contain;
+        background: #1c1917;
+        cursor: pointer;
+    }
+
+    .video-play-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: rgba(28, 25, 23, 0.28);
+        cursor: pointer;
+        z-index: 2;
+        transition: background 0.2s;
+    }
+
+    .video-play-overlay:hover {
+        background: rgba(28, 25, 23, 0.38);
+    }
+
+    .video-play-overlay[hidden] {
+        display: none;
+    }
+
+    .video-play-icon {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 8px 24px rgba(28, 25, 23, 0.22);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s, transform 0.2s;
+    }
+
+    .video-play-overlay:hover .video-play-icon {
+        background: var(--accent-hover);
+        transform: scale(1.05);
+    }
+
+    .video-play-icon::before {
+        content: '';
+        width: 0;
+        height: 0;
+        margin-left: 0.2rem;
+        border-top: 0.65rem solid transparent;
+        border-bottom: 0.65rem solid transparent;
+        border-left: 1rem solid #fff;
+    }
+
+    .video-controls {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.55rem 0.65rem;
+        background: rgba(255, 255, 255, 0.96);
+        border-top: 1px solid var(--border);
+        backdrop-filter: blur(6px);
+    }
+
+    .video-btn {
+        flex-shrink: 0;
+        width: 2rem;
+        height: 2rem;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background: var(--bg);
+        color: var(--text);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: border-color 0.2s, color 0.2s;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .video-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+    }
+
+    .icon-play,
+    .icon-pause,
+    .icon-volume,
+    .icon-muted {
+        display: block;
+        width: 0.7rem;
+        height: 0.8rem;
+        position: relative;
+    }
+
+    .video-btn .icon-play::before {
+        content: '';
+        position: absolute;
+        left: 0.15rem;
+        top: 0.05rem;
+        border-top: 0.35rem solid transparent;
+        border-bottom: 0.35rem solid transparent;
+        border-left: 0.55rem solid currentColor;
+    }
+
+    .video-btn.is-playing .icon-play::before {
+        left: 0.1rem;
+        top: 0.05rem;
+        width: 0.2rem;
+        height: 0.7rem;
+        border: none;
+        background: currentColor;
+        box-shadow: 0.35rem 0 0 currentColor;
+    }
+
+    .video-btn .icon-volume::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.2rem;
+        width: 0.35rem;
+        height: 0.4rem;
+        background: currentColor;
+        clip-path: polygon(0 30%, 60% 0, 60% 100%, 0 70%);
+    }
+
+    .video-btn .icon-volume::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0.15rem;
+        width: 0.35rem;
+        height: 0.35rem;
+        border: 2px solid currentColor;
+        border-left: none;
+        border-radius: 0 50% 50% 0;
+    }
+
+    .video-btn.is-muted .icon-volume::after {
+        display: none;
+    }
+
+    .video-btn.is-muted .icon-volume {
+        transform: rotate(-45deg);
+    }
+
+    .video-progress-wrap {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .video-progress {
+        width: 100%;
+        height: 0.35rem;
+        appearance: none;
+        border-radius: 999px;
+        background: var(--border);
+        cursor: pointer;
+        accent-color: var(--accent);
+    }
+
+    .video-progress::-webkit-slider-thumb {
+        appearance: none;
+        width: 0.85rem;
+        height: 0.85rem;
+        border-radius: 50%;
+        background: var(--accent);
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(28, 25, 23, 0.2);
+    }
+
+    .video-progress::-moz-range-thumb {
+        width: 0.85rem;
+        height: 0.85rem;
+        border-radius: 50%;
+        background: var(--accent);
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(28, 25, 23, 0.2);
+    }
+
+    .video-time {
+        flex-shrink: 0;
+        font-size: 0.75rem;
+        font-variant-numeric: tabular-nums;
+        color: var(--muted);
+        min-width: 4.75rem;
+        text-align: right;
+    }
+
+    .carousel-btn {
+        pointer-events: auto;
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 50%;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.95);
+        color: var(--text);
+        font-size: 1rem;
+        line-height: 1;
+        cursor: pointer;
+        box-shadow: 0 4px 14px rgba(28, 25, 23, 0.08);
+        transition: border-color 0.2s, color 0.2s, transform 0.2s;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .carousel-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+    }
+
+    .carousel-btn:active {
+        transform: scale(0.96);
+    }
+
+    .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 0.45rem;
+        padding: 0.65rem 0;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .carousel-dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        border: none;
+        padding: 0;
+        background: #d6d3d1;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+    }
+
+    .carousel-dot[aria-selected='true'] {
+        background: var(--accent);
+        transform: scale(1.15);
+    }
+
+    figcaption {
+        padding: 1.25rem 1.35rem 1.5rem;
+    }
+
+    figcaption strong {
+        display: block;
+        font-size: 1.15rem;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.02em;
+    }
+
+    figcaption p {
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.65;
+    }
+
+    @media (max-width: 700px) {
+        .pets-grid {
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .page-hero h1 {
+            font-size: clamp(1.75rem, 8vw, 2.25rem);
+        }
+
+        .pet-card {
+            border-radius: 10px;
+        }
+
+        .carousel-viewport {
+            --video-controls-height: 4.75rem;
+        }
+
+        .carousel-controls {
+            inset: 0;
+            align-items: center;
+            padding: 0 0.35rem;
+        }
+
+        .carousel-btn {
+            width: 2.75rem;
+            height: 2.75rem;
+            font-size: 1.1rem;
+        }
+
+        .carousel-slide {
+            aspect-ratio: 1 / 1;
+        }
+
+        .video-play-icon {
+            width: clamp(3rem, 18vw, 3.75rem);
+            height: clamp(3rem, 18vw, 3.75rem);
+        }
+
+        .video-play-icon::before {
+            border-top-width: 0.55rem;
+            border-bottom-width: 0.55rem;
+            border-left-width: 0.85rem;
+        }
+
+        .video-controls {
+            flex-wrap: wrap;
+            gap: 0.45rem 0.5rem;
+            padding: 0.5rem;
+            padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+        }
+
+        .video-progress-wrap {
+            order: -1;
+            flex: 1 1 100%;
+        }
+
+        .video-progress {
+            height: 0.45rem;
+        }
+
+        .video-progress::-webkit-slider-thumb {
+            width: 1.1rem;
+            height: 1.1rem;
+        }
+
+        .video-progress::-moz-range-thumb {
+            width: 1.1rem;
+            height: 1.1rem;
+        }
+
+        .video-btn {
+            width: 2.75rem;
+            height: 2.75rem;
+        }
+
+        .video-time {
+            flex: 1;
+            min-width: 0;
+            text-align: left;
+            font-size: 0.7rem;
+        }
+
+        .carousel-dots {
+            gap: 0.35rem;
+            padding: 0.75rem 0;
+        }
+
+        .carousel-dot {
+            position: relative;
+            width: 0.45rem;
+            height: 0.45rem;
+        }
+
+        .carousel-dot::before {
+            content: '';
+            position: absolute;
+            inset: -0.55rem;
+        }
+
+        figcaption {
+            padding: 1rem 1.1rem 1.25rem;
+        }
+
+        figcaption strong {
+            font-size: 1.05rem;
+        }
+
+        figcaption p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+    }
+</style>
