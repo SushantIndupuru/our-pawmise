@@ -1,11 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import {Image} from 'astro:assets';
-import pebbleVideo from '../assets/pebble.mp4';
 import pebblePhoto from '../assets/pebble.JPG';
-import tintinVideo from '../assets/tintin.mp4';
-import kajuVideo from '../assets/kaju.mp4';
-import kajuVideo2 from '../assets/kaju2.mp4';
 
 const pets = [
     {
@@ -13,7 +9,7 @@ const pets = [
         description:
             'Pebble came to us after being rescued and needing a solid medical foundation. Our Pawmise helped cover core veterinary care and vaccinations, giving Pebble a healthy start and a much brighter path forward with a caring family.',
         media: [
-            {type: 'video', src: pebbleVideo, poster: pebblePhoto.src},
+            {type: 'video', src: '/videos/pebble.mp4', poster: pebblePhoto.src},
             {type: 'image', src: pebblePhoto},
         ],
     },
@@ -22,7 +18,7 @@ const pets = [
         description:
             "Tintin's family was hit with unexpected costs after a full wellness exam uncovered kidney concerns. We helped fund the check-up and ongoing kidney medication so Tintin could receive steady, attentive care without treatment being put on hold.",
         media: [
-            {type: 'video', src: tintinVideo},
+            {type: 'video', src: '/videos/tintin.mp4'},
         ],
     },
     {
@@ -30,8 +26,8 @@ const pets = [
         description:
             'When Kaju was diagnosed with babesiosis, his family needed help quickly with testing and treatment. Our Pawmise supported PCR diagnostics and the medications Kaju needed to fight the infection and work toward a full recovery.',
         media: [
-            {type: 'video', src: kajuVideo},
-            {type: 'video', src: kajuVideo2},
+            {type: 'video', src: '/videos/kaju.mp4'},
+            {type: 'video', src: '/videos/kaju2.mp4'},
         ],
     },
 ];
