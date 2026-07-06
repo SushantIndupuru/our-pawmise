@@ -71,12 +71,11 @@ const pets = [
                                                  aria-hidden={index !== 0 ? 'true' : 'false'}>
                                                 {item.type === 'video' ? (
                                                     <div class="video-player" data-video-player>
-                                                        <video class="pet-video" src={item.src} poster={item.poster}
-                                                               playsinline preload="metadata"
+                                                        <video class="pet-video" poster={item.poster}
+                                                               playsinline preload="none"
                                                                aria-label={`Video of ${pet.name}`}
-                                                               data-carousel-video>
-                                                            <source src={item.src} type="video/mp4"/>
-                                                        </video>
+                                                               data-video-src={item.src}
+                                                               data-carousel-video></video>
                                                         <button type="button" class="video-play-overlay"
                                                                 data-video-play-overlay
                                                                 aria-label={`Play video of ${pet.name}`}>
@@ -144,11 +143,38 @@ const pets = [
             var playPauseBtn = player.querySelector('[data-video-play-pause]');
             if (overlay) {
                 overlay.hidden = playing;
+                overlay.classList.remove('is-loading');
             }
             if (playPauseBtn) {
                 playPauseBtn.setAttribute('aria-label', playing ? 'Pause' : 'Play');
                 playPauseBtn.classList.toggle('is-playing', playing);
             }
+        }
+
+        var blobCache = new Map();
+
+        function loadVideoBlob(video) {
+            var url = video.getAttribute('data-video-src');
+            if (!url || video.dataset.loaded === 'true') {
+                return Promise.resolve();
+            }
+
+            if (!blobCache.has(url)) {
+                blobCache.set(url, fetch(url).then(function (response) {
+                    if (!response.ok) throw new Error('Video fetch failed');
+                    return response.blob();
+                }).then(function (blob) {
+                    return URL.createObjectURL(blob);
+                }));
+            }
+
+            return blobCache.get(url).then(function (blobUrl) {
+                if (video.dataset.loaded !== 'true') {
+                    video.src = blobUrl;
+                    video.dataset.loaded = 'true';
+                    video.load();
+                }
+            });
         }
 
         document.querySelectorAll('[data-video-player]').forEach(function (player) {
@@ -178,7 +204,12 @@ const pets = [
                             if (otherPlayer) setPlayState(otherPlayer, false);
                         }
                     });
-                    video.play().catch(function () {});
+                    overlay.classList.add('is-loading');
+                    loadVideoBlob(video).then(function () {
+                        return video.play();
+                    }).catch(function () {
+                        setPlayState(player, false);
+                    });
                 } else {
                     video.pause();
                 }
@@ -221,6 +252,10 @@ const pets = [
             });
 
             setPlayState(player, false);
+        });
+
+        document.querySelectorAll('[data-carousel-video]').forEach(function (video) {
+            loadVideoBlob(video).catch(function () {});
         });
 
         document.querySelectorAll('[data-media-carousel]').forEach(function (carousel) {
@@ -433,6 +468,19 @@ const pets = [
 
     .video-play-overlay[hidden] {
         display: none;
+    }
+
+    .video-play-overlay.is-loading .video-play-icon {
+        opacity: 0.5;
+    }
+
+    .video-play-overlay.is-loading::after {
+        content: 'Loading…';
+        position: absolute;
+        bottom: 1.25rem;
+        font-size: 0.85rem;
+        color: #fff;
+        letter-spacing: 0.02em;
     }
 
     .video-play-icon {
