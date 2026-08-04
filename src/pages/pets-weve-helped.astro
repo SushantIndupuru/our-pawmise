@@ -2,23 +2,27 @@
 import Layout from '../layouts/Layout.astro';
 import {Image} from 'astro:assets';
 import pebblePhoto from '../assets/pebble.JPG';
+import maxPhoto from '../assets/max.jpeg';
+import noahPhoto from '../assets/noah.png';
+import pintuPhoto from '../assets/pintu.png';
+import minnuPhoto from '../assets/minnu.png';
+import rescue1Photo from '../assets/rescue1.jpeg';
 
 const pets = [
     {
-        name: 'Pebble',
+        name: 'Rescue',
         description:
-            'Pebble came to us after being rescued and needing a solid medical foundation. Our Pawmise helped cover core veterinary care and vaccinations, giving Pebble a healthy start and a much brighter path forward with a caring family.',
+            'This rescued pet was involved in an accident and suffered from chronic pain, vocalisation, and hyperaesthesia. Our Pawmise helped with a referral for radiographic examination to get to the root of the pain and guide proper treatment.',
         media: [
-            {type: 'video', src: '/videos/pebble.mp4', poster: pebblePhoto.src},
-            {type: 'image', src: pebblePhoto},
+            {type: 'image', src: rescue1Photo},
         ],
     },
     {
-        name: 'Tintin',
+        name: 'Max',
         description:
-            "Tintin is a community dog cared for by neighbors in his area. After a full wellness exam uncovered kidney concerns, local caretakers faced unexpected vet costs. We helped fund the check-up and ongoing kidney medication so Tintin could receive steady, attentive care without treatment being put on hold.",
+            'Max was recently rescued and needed a thorough workup to get back on his feet. Our Pawmise helped cover complete testing and medication for enlarged lymph nodes and dehydration, giving him the care he needed to recover.',
         media: [
-            {type: 'video', src: '/videos/tintin.mp4'},
+            {type: 'image', src: maxPhoto, fit: 'contain'},
         ],
     },
     {
@@ -31,11 +35,52 @@ const pets = [
         ],
     },
     {
+        name: 'Tintin',
+        description:
+            "Tintin is a community dog cared for by neighbors in his area. After a full wellness exam uncovered kidney concerns, local caretakers faced unexpected vet costs. We helped fund the check-up and ongoing kidney medication so Tintin could receive steady, attentive care without treatment being put on hold.",
+        media: [
+            {type: 'video', src: '/videos/tintin.mp4'},
+        ],
+    },
+    {
+        name: 'Minnu',
+        description:
+            'Minnu needed prompt diagnostics and preventive care. Our Pawmise supported PCR diagnostics and vaccinations to identify her health needs and keep her protected.',
+        media: [
+            {type: 'image', src: minnuPhoto},
+        ],
+    },
+    {
+        name: 'Noah',
+        description:
+            'Noah is a kitten who needed a careful start to a healthy life. Our Pawmise supported diagnostic tests, injections, and vaccinations so Noah could grow up strong and protected.',
+        media: [
+            {type: 'image', src: noahPhoto},
+        ],
+    },
+    {
+        name: 'Pintu',
+        description:
+            'Pintu is a community dog who needed diagnostic tests and injections before being committed to a shelter. Our Pawmise helped fund his care so he could transition safely into a shelter and toward a better future.',
+        media: [
+            {type: 'image', src: pintuPhoto, fit: 'contain'},
+        ],
+    },
+    {
         name: 'Brookly Laila',
         description:
             'Brookly Laila is a community dog who came in for a complete testing panel. Our Pawmise helped cover the full round of diagnostics so local caretakers could understand her health needs and get her on the right care plan.',
         media: [
             {type: 'video', src: '/videos/brookly-laila.mp4'},
+        ],
+    },
+    {
+        name: 'Pebble',
+        description:
+            'Pebble came to us after being rescued and needing a solid medical foundation. Our Pawmise helped cover core veterinary care and vaccinations, giving Pebble a healthy start and a much brighter path forward with a caring family.',
+        media: [
+            {type: 'video', src: '/videos/pebble.mp4', poster: pebblePhoto.src},
+            {type: 'image', src: pebblePhoto},
         ],
     },
 ];
@@ -111,8 +156,10 @@ const pets = [
                                                         </div>
                                                     </div>
                                                 ) : (
-                                                    <Image src={item.src} alt={pet.name} class="pet-photo"
-                                                           width={1200} height={900} loading="lazy"/>
+                                                    <Image src={item.src} alt={pet.name}
+                                                           class:list={['pet-photo', item.fit === 'contain' && 'pet-photo--contain']}
+                                                           width={item.src.width} height={item.src.height}
+                                                           loading="lazy"/>
                                                 )}
                                             </div>
                                         ))}
@@ -467,6 +514,11 @@ const pets = [
         height: 100%;
         object-fit: cover;
         display: block;
+    }
+
+    .pet-photo--contain {
+        object-fit: contain;
+        background: #1c1917;
     }
 
     .video-player {
