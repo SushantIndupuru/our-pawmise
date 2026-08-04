@@ -7,6 +7,7 @@ import noahPhoto from '../assets/noah.png';
 import pintuPhoto from '../assets/pintu.png';
 import minnuPhoto from '../assets/minnu.png';
 import rescue1Photo from '../assets/rescue1.jpeg';
+import adamPhoto from '../assets/adam.jpeg';
 
 const pets = [
     {
@@ -67,6 +68,14 @@ const pets = [
         ],
     },
     {
+        name: 'Adam',
+        description:
+            'Adam came in for his standard vaccinations. Our Pawmise helped cover his core shots, keeping him protected against common illnesses and off to a healthy start.',
+        media: [
+            {type: 'image', src: adamPhoto},
+        ],
+    },
+    {
         name: 'Brookly Laila',
         description:
             'Brookly Laila is a community dog who came in for a complete testing panel. Our Pawmise helped cover the full round of diagnostics so local caretakers could understand her health needs and get her on the right care plan.',
@@ -94,6 +103,9 @@ const pets = [
                 <h1>Pets We've Helped</h1>
                 <p>
                     Real stories from pets and families who received support through Our Pawmise.
+                </p>
+                <p class="collab">
+                    In collaboration with local partners and My Pets Choice Clinic, Bengaluru.
                 </p>
             </div>
         </header>
@@ -452,6 +464,13 @@ const pets = [
 
     .page-hero p {
         color: var(--muted);
+    }
+
+    .page-hero .collab {
+        margin-top: 0.75rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text);
     }
 
     .section {
