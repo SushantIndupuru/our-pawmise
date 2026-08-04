@@ -224,7 +224,7 @@ const {title, description = "Our Pawmise – Because no pet should be denied car
 
     .nav-links {
         display: flex;
-        gap: 2rem;
+        gap: 1.5rem;
         list-style: none;
     }
 
@@ -234,6 +234,7 @@ const {title, description = "Our Pawmise – Because no pet should be denied car
         font-weight: 500;
         color: var(--muted);
         transition: color 0.2s;
+        white-space: nowrap;
     }
 
     .nav-links a:hover {
@@ -415,7 +416,7 @@ const {title, description = "Our Pawmise – Because no pet should be denied car
         padding: 0 1.5rem;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 1024px) {
         .nav-links {
             display: none;
         }
