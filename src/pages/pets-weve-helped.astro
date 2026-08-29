@@ -8,8 +8,22 @@ import pintuPhoto from '../assets/pintu.png';
 import minnuPhoto from '../assets/minnu.png';
 import rescue1Photo from '../assets/rescue1.jpeg';
 import adamPhoto from '../assets/adam.jpeg';
+import brutusPhoto from '../assets/brutus.png';
+import puttuPhoto from '../assets/puttu.png';
+import rescuePuppiesPhoto from '../assets/5_rescue_puppies.png';
+import winsiPhoto from '../assets/winsi.png';
+import simbaPhoto from '../assets/simba.png';
+import mushroomPhoto from '../assets/mushroom.png';
 
 const pets = [
+    {
+        name: 'Mushroom',
+        description:
+            'Mushroom suffered severe face lacerations from a street fight. Our Pawmise helped fund treatment so the wounds could heal and Mushroom could get back on the mend.',
+        media: [
+            {type: 'image', src: mushroomPhoto},
+        ],
+    },
     {
         name: 'Rescue',
         description:
@@ -19,11 +33,19 @@ const pets = [
         ],
     },
     {
-        name: 'Max',
+        name: 'Brutus',
         description:
-            'Max was recently rescued and needed a thorough workup to get back on his feet. Our Pawmise helped cover complete testing and medication for enlarged lymph nodes and dehydration, giving him the care he needed to recover.',
+            'Brutus was kept for neurological issues and needed comprehensive care. Our Pawmise supported a wide range of antibiotics, vaccinations, and neutering so he could recover and stay protected.',
         media: [
-            {type: 'image', src: maxPhoto, fit: 'contain'},
+            {type: 'image', src: brutusPhoto},
+        ],
+    },
+    {
+        name: 'Winsi',
+        description:
+            'Winsi came in with multiple bite wounds and infection. Our Pawmise supported treatment so the wounds could heal and the infection could be brought under control.',
+        media: [
+            {type: 'image', src: winsiPhoto},
         ],
     },
     {
@@ -36,11 +58,43 @@ const pets = [
         ],
     },
     {
+        name: 'Simba',
+        description:
+            'Simba needed antibiotics for bite wounds and a rabies vaccination. Our Pawmise helped cover the treatment and preventive care so Simba could recover safely.',
+        media: [
+            {type: 'image', src: simbaPhoto},
+        ],
+    },
+    {
+        name: 'Max',
+        description:
+            'Max was recently rescued and needed a thorough workup to get back on his feet. Our Pawmise helped cover complete testing and medication for enlarged lymph nodes and dehydration, giving him the care he needed to recover.',
+        media: [
+            {type: 'image', src: maxPhoto, fit: 'contain'},
+        ],
+    },
+    {
         name: 'Tintin',
         description:
             "Tintin is a community dog cared for by neighbors in his area. After a full wellness exam uncovered kidney concerns, local caretakers faced unexpected vet costs. We helped fund the check-up and ongoing kidney medication so Tintin could receive steady, attentive care without treatment being put on hold.",
         media: [
             {type: 'video', src: '/videos/tintin.mp4'},
+        ],
+    },
+    {
+        name: 'Puttu',
+        description:
+            'Puttu needed antibiotics and blood testing to get a clear picture of his health. Our Pawmise helped cover the diagnostics and treatment he needed to recover.',
+        media: [
+            {type: 'image', src: puttuPhoto},
+        ],
+    },
+    {
+        name: '5 Rescue Puppies',
+        description:
+            'A litter of five rescue puppies needed a solid medical start. Our Pawmise helped fund diagnostics, vaccinations, and medication for a mild vulval infection so the whole litter could grow up healthy and protected.',
+        media: [
+            {type: 'image', src: rescuePuppiesPhoto},
         ],
     },
     {
@@ -52,11 +106,11 @@ const pets = [
         ],
     },
     {
-        name: 'Noah',
+        name: 'Brookly Laila',
         description:
-            'Noah is a kitten who needed a careful start to a healthy life. Our Pawmise supported diagnostic tests, injections, and vaccinations so Noah could grow up strong and protected.',
+            'Brookly Laila is a community dog who came in for a complete testing panel. Our Pawmise helped cover the full round of diagnostics so local caretakers could understand her health needs and get her on the right care plan.',
         media: [
-            {type: 'image', src: noahPhoto},
+            {type: 'video', src: '/videos/brookly-laila.mp4'},
         ],
     },
     {
@@ -68,19 +122,11 @@ const pets = [
         ],
     },
     {
-        name: 'Adam',
+        name: 'Noah',
         description:
-            'Adam came in for his standard vaccinations. Our Pawmise helped cover his core shots, keeping him protected against common illnesses and off to a healthy start.',
+            'Noah is a kitten who needed a careful start to a healthy life. Our Pawmise supported diagnostic tests, injections, and vaccinations so Noah could grow up strong and protected.',
         media: [
-            {type: 'image', src: adamPhoto},
-        ],
-    },
-    {
-        name: 'Brookly Laila',
-        description:
-            'Brookly Laila is a community dog who came in for a complete testing panel. Our Pawmise helped cover the full round of diagnostics so local caretakers could understand her health needs and get her on the right care plan.',
-        media: [
-            {type: 'video', src: '/videos/brookly-laila.mp4'},
+            {type: 'image', src: noahPhoto},
         ],
     },
     {
@@ -90,6 +136,14 @@ const pets = [
         media: [
             {type: 'video', src: '/videos/pebble.mp4', poster: pebblePhoto.src},
             {type: 'image', src: pebblePhoto},
+        ],
+    },
+    {
+        name: 'Adam',
+        description:
+            'Adam came in for his standard vaccinations. Our Pawmise helped cover his core shots, keeping him protected against common illnesses and off to a healthy start.',
+        media: [
+            {type: 'image', src: adamPhoto},
         ],
     },
 ];
