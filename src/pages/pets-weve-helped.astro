@@ -14,14 +14,34 @@ import rescuePuppiesPhoto from '../assets/5_rescue_puppies.png';
 import winsiPhoto from '../assets/winsi.png';
 import simbaPhoto from '../assets/simba.png';
 import mushroomPhoto from '../assets/mushroom.png';
+import rescue2Photo from '../assets/rescue2.png';
+import tommyPhoto from '../assets/tommy.png';
+import pixiePhoto from '../assets/pixie.png';
+import minniePhoto from '../assets/minnie.png';
 
 const pets = [
+    {
+        name: 'Minnie',
+        description:
+            'Minnie is a rescued dog who came in after a vicious street fight. Our Pawmise helped cover medications, vaccines, diagnostic tests, and IV treatment so she could recover from her injuries and get the full care she needed.',
+        media: [
+            {type: 'image', src: minniePhoto, sensitive: true},
+        ],
+    },
     {
         name: 'Mushroom',
         description:
             'Mushroom suffered severe face lacerations from a street fight. Our Pawmise helped fund treatment so the wounds could heal and Mushroom could get back on the mend.',
         media: [
             {type: 'image', src: mushroomPhoto, sensitive: true},
+        ],
+    },
+    {
+        name: 'Rescue',
+        description:
+            'This rescued pet needed treatment for an infected back wound. Our Pawmise helped fund the care so the infection could be brought under control and the wound could heal.',
+        media: [
+            {type: 'image', src: rescue2Photo, sensitive: true},
         ],
     },
     {
@@ -41,6 +61,12 @@ const pets = [
         ],
     },
     {
+        name: 'Brownie',
+        description:
+            'Brownie needed surgery to remove bladder stones, plus follow-up medication. Our Pawmise helped cover the procedure and the meds so Brownie could recover comfortably and stay healthy.',
+        media: [],
+    },
+    {
         name: 'Winsi',
         description:
             'Winsi came in with multiple bite wounds and infection. Our Pawmise supported treatment so the wounds could heal and the infection could be brought under control.',
@@ -55,6 +81,14 @@ const pets = [
         media: [
             {type: 'video', src: '/videos/kaju.mp4'},
             {type: 'video', src: '/videos/kaju2.mp4'},
+        ],
+    },
+    {
+        name: 'Tommy',
+        description:
+            'Tommy came in with an infected elbow wound. Our Pawmise helped fund treatment so the infection could be cleared and the wound could heal.',
+        media: [
+            {type: 'image', src: tommyPhoto},
         ],
     },
     {
@@ -87,6 +121,14 @@ const pets = [
             'Puttu needed antibiotics and blood testing to get a clear picture of his health. Our Pawmise helped cover the diagnostics and treatment he needed to recover.',
         media: [
             {type: 'image', src: puttuPhoto},
+        ],
+    },
+    {
+        name: 'Pixie',
+        description:
+            'Pixie needed medication for inappetence when she stopped eating. Our Pawmise helped cover the treatment so she could get her appetite back and return to feeling like herself.',
+        media: [
+            {type: 'image', src: pixiePhoto},
         ],
     },
     {
@@ -169,6 +211,11 @@ const pets = [
                 <div class="pets-grid">
                     {pets.map((pet) => (
                         <figure class="pet-card">
+                            {pet.media.length === 0 ? (
+                                <div class="photo-placeholder" role="img" aria-label={`No photo of ${pet.name}`}>
+                                    <span>Photo not available</span>
+                                </div>
+                            ) : (
                             <div class="media-carousel" data-media-carousel data-pet={pet.name}
                                  aria-roledescription="carousel" aria-label={`Photos and videos of ${pet.name}`}>
                                 <div class="carousel-viewport">
@@ -255,6 +302,7 @@ const pets = [
                                     </div>
                                 )}
                             </div>
+                            )}
                             <figcaption>
                                 <strong>{pet.name}</strong>
                                 <p>{pet.description}</p>
@@ -602,6 +650,19 @@ const pets = [
         max-height: 420px;
         overflow: hidden;
         background: #1c1917;
+    }
+
+    .photo-placeholder {
+        aspect-ratio: 3 / 4;
+        max-height: 420px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f3f1ee;
+        color: var(--muted);
+        font-size: 0.9rem;
+        font-weight: 500;
+        letter-spacing: -0.01em;
     }
 
     .pet-photo {
@@ -1043,6 +1104,10 @@ const pets = [
 
         .carousel-slide {
             aspect-ratio: 3 / 4;
+            max-height: 55vh;
+        }
+
+        .photo-placeholder {
             max-height: 55vh;
         }
 
