@@ -13,5 +13,8 @@ export default defineConfig({
   },
 
   output: "static",
+  redirects: {
+    '/pets-in-need': '/pets-weve-helped',
+  },
   integrations: [sitemap()]
 });

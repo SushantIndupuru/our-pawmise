@@ -6,6 +6,13 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "redirects": [
+      {
+        "source": "/pets-in-need",
+        "destination": "/pets-weve-helped",
+        "type": 301
+      }
+    ],
     "headers": [
       {
         "source": "/videos/**",
